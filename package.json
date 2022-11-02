@@ -2,8 +2,12 @@
   "name": "elegantstack",
   "private": true,
   "license": "",
-  "workspaces": ["packages/**", "site"],
+  "workspaces": [
+    "packages/**",
+    "site"
+  ],
   "scripts": {
+    "build": "cd site & yarn build",
     "clean": "lerna clean",
     "release": "lerna version",
     "prettier:windows": "./node_modules/.bin/prettier --write \"{packages,starters}/**/*.{jsx,js}\""
