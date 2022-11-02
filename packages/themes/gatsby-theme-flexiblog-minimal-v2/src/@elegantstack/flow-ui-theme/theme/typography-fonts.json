@@ -1,0 +1,11 @@
+{
+  "fonts": {
+    "google": {
+      "families": ["Inter:400,i400,600,700,900&display=swap"]
+    }
+  },
+  "theme": {
+    "headerFontFamily": ["Inter", "sans-serif"],
+    "bodyFontFamily": ["Inter", "sans-serif"]
+  }
+}

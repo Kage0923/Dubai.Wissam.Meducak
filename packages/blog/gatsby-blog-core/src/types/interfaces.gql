@@ -1,0 +1,69 @@
+############################################
+## Article
+############################################
+
+interface Article implements Node {
+  id: ID!
+  title: String!
+  slug: String!
+  #proxy is a workaround for gatsby issue #21476
+  date: Date @proxy(from: "date") @dateformat
+  featured: Boolean
+  private: Boolean
+  protected: Boolean
+  author: ArticleAuthor
+  category: ArticleCategory
+  tags: [ArticleTag]
+  keywords: [String]
+  link: String
+  body: String
+  excerpt(pruneLength: Int = 100): String
+  timeToRead: Int
+  thumbnailText: String
+  thumbnail: ImageAsset
+  tableOfContents(maxDepth: Int = 6): JSON
+  draft: Boolean
+}
+
+############################################
+## Category
+############################################
+
+interface ArticleCategory implements Node {
+  id: ID!
+  name: String
+  slug: String
+  description: String
+  color: String
+  icon: String
+}
+
+############################################
+## Author
+############################################
+
+interface ArticleAuthor implements Node {
+  id: ID!
+  name: String!
+  slug: String!
+  description: String
+  title: String
+  social: [SocialMedia]
+  skills: [String]
+  thumbnail: ImageAsset
+}
+
+type SocialMedia {
+  name: String
+  url: String!
+}
+
+############################################
+## Tag
+############################################
+
+type ArticleTag implements Node {
+  id: ID!
+  name: String!
+  slug: String! @makeSlug
+}

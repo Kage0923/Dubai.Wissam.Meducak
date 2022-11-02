@@ -1,0 +1,74 @@
+/* Replacement for slick-carousel/slick/slick-theme.css */
+.with-animation .slick-slide {
+  transition: all 600ms ease;
+  opacity: 1;
+  transform: scale(1);
+  transform-origin: left;
+}
+
+.with-animation .slick-slide.slick-active + :not(.slick-active) {
+  opacity: 0;
+  transform: scale(0.7);
+}
+
+.slick-prev,
+.slick-next {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  -webkit-transform: translate(0, -50%);
+  -ms-transform: translate(0, -50%);
+  transform: translate(0, -50%);
+}
+
+.slick-prev {
+  box-shadow: -1px 1px 3px 0 rgba(1, 1, 1, 0.1);
+  left: -15px;
+}
+.slick-next {
+  box-shadow: 1px 1px 3px 0 rgba(1, 1, 1, 0.1);
+  right: -15px;
+}
+
+.slick-dots {
+  position: absolute;
+  list-style: none;
+  display: block;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  top: -4rem;
+  padding-top: 0.5rem;
+  text-align: right;
+}
+
+.slick-dots li {
+  position: relative;
+  display: inline-block;
+  /* height: 20px;
+  width: 20px; */
+  margin: 0 5px;
+  padding: 0;
+  cursor: pointer;
+}
+
+.slick-dots li button {
+  border: 0;
+  background: transparent;
+  display: block;
+  outline: none;
+  cursor: pointer;
+  outline: none;
+  font-size: 0px;
+  line-height: 0px;
+  width: 12px;
+  height: 12px;
+  margin: 5px;
+  border-radius: 100%;
+  background-color: #a0aec0;
+}
+
+.slick-dots li.slick-active button {
+  background-color: #4a5568;
+}

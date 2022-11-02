@@ -1,0 +1,74 @@
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 10%, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translateZ(0);
+  }
+}
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, -10%, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translateZ(0);
+  }
+}
+@keyframes fadeInLeft {
+  0% {
+    opacity: 0;
+    transform: translate3d(-20%, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translateZ(0);
+  }
+}
+@keyframes fadeInRight {
+  0% {
+    opacity: 0;
+    transform: translate3d(20%, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translateZ(0);
+  }
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@media screen and (min-width: 768px) {
+  .react-reveal {
+    animation-timing-function: cubic-bezier(0.77, 0, 0.175, 1);
+  }
+  .fadeInUp {
+    animation-name: fadeInUp;
+  }
+  .fadeInDown {
+    animation-name: fadeInDown;
+  }
+  .fadeInLeft {
+    animation-name: fadeInLeft;
+  }
+  .fadeInRight {
+    animation-name: fadeInRight;
+  }
+  .fadeIn {
+    animation-name: fadeIn;
+  }
+}
+@media not screen and (min-width: 768px) {
+  /* Fix for small phones */
+  .react-reveal {
+    opacity: 1 !important;
+  }
+}

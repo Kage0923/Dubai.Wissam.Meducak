@@ -1,0 +1,12 @@
+{
+  "name": "@elegantstack/flow-ui-layout",
+  "version": "3.1.0",
+  "main": "index.js",
+  "private": true,
+  "author": "ElegantStack Team",
+  "license": "",
+  "dependencies": {
+    "rc-switch": "^3.2.1",
+    "theme-ui": "^0.3.4"
+  }
+}

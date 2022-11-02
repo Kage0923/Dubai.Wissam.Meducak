@@ -1,0 +1,11 @@
+{
+  "name": "@elegantstack/gatsby-blog-pages",
+  "version": "3.2.0",
+  "main": "index.js",
+  "private": true,
+  "author": "ElegantStack Team",
+  "license": "",
+  "dependencies": {
+    "theme-ui": "^0.3.4"
+  }
+}

@@ -1,0 +1,36 @@
+############################################
+## Sanity Fallback Types
+############################################
+
+enum SanityImageLayoutType {
+  CONSTRAINT
+  FIXED
+  FULL_WIDTH
+}
+
+enum SanityImagePlaceholder {
+  DOMINANT_COLOR
+  BLUR
+  NONE
+}
+
+enum SanityImageFit {
+  CROP
+  CLIP
+  FILL
+  FILLMAX
+  SCALE
+  MAX
+  MIN
+}
+
+type SanityImageAsset implements Node {
+  gatsbyImageData(
+    width: Int
+    height: Int
+    layout: SanityImageLayoutType
+    fit: SanityImageFit
+    placeholder: SanityImagePlaceholder
+    outputPixelDensities: [Float]
+  ): JSON
+}

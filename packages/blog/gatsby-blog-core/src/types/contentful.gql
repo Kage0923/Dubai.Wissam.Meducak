@@ -1,0 +1,81 @@
+############################################
+## Article
+############################################
+
+type ContentfulArticleProxy implements Node & Article
+  @dontInfer
+  @childOf(types: ["ContentfulArticle"])
+  @proxyOf(type: "ContentfulArticle") {
+  title: String! @proxyField
+  slug: String! @link(from: "parent", on: "ContentfulArticle") @makeSlug
+  date: Date @proxyField @dateformat
+  featured: Boolean @proxyField
+  private: Boolean @proxyField
+  protected: Boolean @proxyField
+  author: ContentfulAuthorProxy
+    @proxyField(from: "parent.author___NODE")
+    @link(by: "parent.id")
+  category: ContentfulCategoryProxy
+    @proxyField(from: "parent.category___NODE")
+    @link(by: "parent.id")
+  tags: [ArticleTag] @proxyField @link(by: "name")
+  keywords: [String] @proxyField
+  link: String @proxyField
+  body: String
+    @proxyField(from: "parent.body___NODE")
+    @link(by: "parent.id", on: "Mdx")
+    @proxyResolver(on: "Mdx")
+  excerpt(pruneLength: Int = 100): String
+    @proxyField(from: "parent.body___NODE")
+    @link(by: "parent.id", on: "Mdx")
+    @proxyResolver(on: "Mdx")
+  timeToRead: Int
+    @proxyField(from: "parent.body___NODE")
+    @link(by: "parent.id", on: "Mdx")
+    @proxyResolver(on: "Mdx")
+  thumbnailText: String @proxyField
+  thumbnail: ContentfulAsset @proxyField(from: "parent.heroImage___NODE") @link
+  tableOfContents(maxDepth: Int = 6): JSON
+    @proxyField(from: "parent.body___NODE")
+    @link(by: "parent.id", on: "Mdx")
+    @proxyResolver(on: "Mdx")
+  draft: Boolean
+}
+
+############################################
+## Category
+############################################
+
+type ContentfulCategoryProxy implements Node & ArticleCategory
+  @dontInfer
+  @childOf(types: ["ContentfulCategory"])
+  @proxyOf(type: "ContentfulCategory") {
+  name: String! @proxyField
+  slug: String! @link(from: "parent", on: "ContentfulCategory") @makeSlug
+  description: String @proxyField
+  color: String @proxyField
+  icon: String
+    @proxyField(from: "parent.icon___NODE")
+    @link(on: "ContentfulAsset")
+    @reduce(to: "file.url")
+}
+
+############################################
+## Author
+############################################
+
+type ContentfulAuthorProxy implements Node & ArticleAuthor
+  @dontInfer
+  @childOf(types: ["ContentfulAuthor"])
+  @proxyOf(type: "ContentfulAuthor") {
+  name: String! @proxyField
+  slug: String! @link(from: "parent", on: "ContentfulAuthor") @makeSlug
+  description: String
+    @proxyField(from: "parent.description___NODE")
+    @link(on: "contentfulAuthorDescriptionTextNode")
+    @reduce(to: "description")
+  title: String @proxyField
+  social: [SocialMedia] @proxyField @normalizeSocial
+  skills: [String] @proxyField
+  thumbnail: ContentfulAsset @proxyField(from: "parent.thumbnail___NODE") @link
+}

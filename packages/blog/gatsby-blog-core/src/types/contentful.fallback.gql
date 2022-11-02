@@ -1,0 +1,43 @@
+############################################
+## Contentful Fallback Types
+############################################
+
+enum ImageLayoutType {
+  CONSTRAINT
+  FIXED
+  FULL_WIDTH
+}
+
+enum ImageResizingBehavior {
+  NO_CHANGE
+  PAD
+  CROP
+  FILL
+  THUMB
+  SCALE
+}
+
+enum ImageCropFocusType {
+  TOP
+  CENTER
+  BOTTOM
+}
+
+enum ImageFormatType {
+  AUTO
+  JPG
+  PNG
+  WEBP
+}
+
+type ContentfulAsset implements Node {
+  gatsbyImageData(
+    width: Int
+    height: Int
+    layout: ImageLayoutType
+    cropFocus: ImageCropFocusType
+    quality: Int
+    formats: [ImageFormatType]
+    resizingBehavior: ImageResizingBehavior
+  ): JSON
+}

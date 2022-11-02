@@ -1,0 +1,21 @@
+{
+  "name": "@elegantstack/flow-ui-components",
+  "version": "3.4.0",
+  "main": "index.js",
+  "private": true,
+  "author": "ElegantStack Team",
+  "license": "",
+  "dependencies": {
+    "@elegantstack/gatsby-plugin-alias-imports": "^3.0.0",
+    "@loadable/component": "^5.15.2",
+    "@theme-ui/prism": "^0.3.4",
+    "dedupe": "^3.0.2",
+    "prop-types": "^15.8.1",
+    "react-icons": "^4.3.1",
+    "react-inlinesvg": "^2.3.0",
+    "react-reveal": "^1.2.2",
+    "react-slick": "^0.29.0",
+    "slick-carousel": "^1.8.1",
+    "theme-ui": "^0.3.4"
+  }
+}

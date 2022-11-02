@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "jsx": "react",
+    "target": "es6",
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": "./",
+    "paths": {
+      "@solid-ui-components/*": ["packages/solid-ui/solid-ui-components/src/*"],
+      "@solid-ui-layout/*": ["packages/solid-ui/solid-ui-layout/src/*"],
+      "@solid-ui-theme/*": ["packages/solid-ui/solid-ui-theme/src/*"],
+      "@solid-ui-blocks/*": ["packages/solid-ui/solid-ui-blocks/src/*"],
+      "@components/*": ["packages/flow-ui/flow-ui-components/src/*"],
+      "@layout/*": ["packages/flow-ui/flow-ui-layout/src/*"],
+      "@widgets/*": ["packages/flow-ui/flow-ui-widgets/src/*"]
+    }
+  },
+  "exclude": ["node_modules", "public"]
+}

@@ -1,0 +1,79 @@
+############################################
+## Article
+############################################
+
+type SanityArticleProxy implements Node & Article
+  @dontInfer
+  @childOf(types: ["SanityArticle"])
+  @proxyOf(type: "SanityArticle") {
+  title: String! @proxyField
+  slug: String! @link(from: "parent", on: "SanityArticle") @makeSlug
+  date: Date @proxyField @dateformat
+  featured: Boolean @proxyField
+  private: Boolean @proxyField
+  protected: Boolean @proxyField
+  author: SanityAuthorProxy
+    @proxyField(from: "parent.author._ref")
+    @link(by: "parent.id")
+  category: SanityCategoryProxy
+    @proxyField(from: "parent.category._ref")
+    @link(by: "parent.id")
+  tags: [ArticleTag] @proxyField @link(by: "name")
+  keywords: [String] @proxyField
+  link: String @proxyField
+  body: String @proxyField @blockContentToMarkdown @proxyResolver(on: "Mdx")
+  excerpt(pruneLength: Int = 100): String
+    @proxyField(from: "parent.body")
+    @blockContentToMarkdown
+    @proxyResolver(on: "Mdx")
+  timeToRead: Int
+    @proxyField(from: "parent.body")
+    @blockContentToMarkdown
+    @proxyResolver(on: "Mdx")
+  thumbnailText: String @proxyField
+  thumbnail: SanityImageAsset
+    @proxyField(from: "parent.thumbnail.asset._ref")
+    @link
+  tableOfContents(maxDepth: Int = 6): JSON
+    @proxyField(from: "parent.body")
+    @blockContentToMarkdown
+    @proxyResolver(on: "Mdx")
+  draft: Boolean
+}
+
+############################################
+## Category
+############################################
+
+type SanityCategoryProxy implements Node & ArticleCategory
+  @dontInfer
+  @childOf(types: ["SanityCategory"])
+  @proxyOf(type: "SanityCategory") {
+  name: String! @proxyField
+  slug: String! @link(from: "parent", on: "SanityCategory") @makeSlug
+  description: String @proxyField
+  color: String @proxyField
+  icon: String
+    @proxyField(from: "parent.icon.asset._ref")
+    @link(on: "SanityFileAsset")
+    @reduce(to: "url")
+}
+
+############################################
+## Author
+############################################
+
+type SanityAuthorProxy implements Node & ArticleAuthor
+  @dontInfer
+  @childOf(types: ["SanityAuthor"])
+  @proxyOf(type: "SanityAuthor") {
+  name: String! @proxyField
+  slug: String! @link(from: "parent", on: "SanityAuthor") @makeSlug
+  description: String @proxyField
+  title: String @proxyField
+  social: [SocialMedia] @proxyField @normalizeSocial
+  skills: [String] @proxyField
+  thumbnail: SanityImageAsset
+    @proxyField(from: "parent.thumbnail.asset._ref")
+    @link
+}

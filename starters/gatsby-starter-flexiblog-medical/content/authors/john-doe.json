@@ -1,0 +1,21 @@
+{
+  "name": "John Doe",
+  "title": "Web Developer",
+  "description": "Sed commodo, est quis maximus fermentum, massa ipsum euismod neque, in varius risus tellus quis lacus. Sed ac bibendum odio.",
+  "thumbnail": "john-doe.png",
+  "social": [
+    {
+      "name": "Instagram",
+      "url": "https://instagram.com/instagram"
+    },
+    {
+      "name": "Twitter",
+      "url": "https://twitter.com/twitter"
+    },
+    {
+      "name": "Website",
+      "url": "https://example.com"
+    }
+  ],
+  "skills": ["Virus", "Examination", "Cancer"]
+}

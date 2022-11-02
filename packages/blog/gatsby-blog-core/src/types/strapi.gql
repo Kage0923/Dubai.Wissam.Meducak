@@ -1,0 +1,98 @@
+############################################
+## Article
+############################################
+
+type StrapiArticleProxy implements Node & Article
+  @dontInfer
+  @childOf(types: ["STRAPI_ARTICLE"])
+  @proxyOf(type: "STRAPI_ARTICLE") {
+  title: String! @proxyField
+  slug: String! @link(from: "parent", on: "STRAPI_ARTICLE") @makeSlug
+  date: Date @proxyField @dateformat
+  featured: Boolean @proxyField
+  private: Boolean @proxyField
+  protected: Boolean @proxyField
+  author: StrapiAuthorProxy
+    @proxyField(from: "parent.author___NODE")
+    @link(by: "parent.id")
+  category: StrapiCategoryProxy
+    @proxyField(from: "parent.category___NODE")
+    @link(by: "parent.id")
+  tags: [ArticleTag] @proxyField(from: "parent.tags_array") @link(by: "name")
+  keywords: [String] @proxyField(from: "parent.keywords_array")
+  link: String @proxyField
+  body: String
+    @proxyField(from: "parent.body.data___NODE")
+    @link(by: "parent.id", on: "Mdx")
+    @proxyResolver(on: "Mdx")
+  excerpt(pruneLength: Int = 100): String
+    @proxyField(from: "parent.body.data___NODE")
+    @link(by: "parent.id", on: "Mdx")
+    @proxyResolver(on: "Mdx")
+  timeToRead: Int
+    @proxyField(from: "parent.body.data___NODE")
+    @link(by: "parent.id", on: "Mdx")
+    @proxyResolver(on: "Mdx")
+  thumbnailText: String @proxyField
+  thumbnail: ImageSharp
+    @proxyField(from: "parent.thumbnail___NODE")
+    @link(on: "STRAPI__MEDIA")
+    @proxyResolver(on: "STRAPI__MEDIA", to: "localFileImageSharp")
+  tableOfContents(maxDepth: Int = 6): JSON
+    @proxyField(from: "parent.body.data___NODE")
+    @link(by: "parent.id", on: "Mdx")
+    @proxyResolver(on: "Mdx")
+  draft: Boolean
+}
+
+############################################
+## Category
+############################################
+
+type StrapiCategoryProxy implements Node & ArticleCategory
+  @dontInfer
+  @childOf(types: ["STRAPI_CATEGORY"])
+  @proxyOf(type: "STRAPI_CATEGORY") {
+  name: String! @proxyField
+  slug: String! @link(from: "parent", on: "STRAPI_CATEGORY") @makeSlug
+  description: String @proxyField
+  color: String @proxyField
+  icon: String
+    @proxyField(from: "parent.icon___NODE")
+    @link(on: "STRAPI__MEDIA")
+    @proxyResolver(on: "STRAPI__MEDIA", to: "localFilePublicURL")
+}
+
+############################################
+## Author
+############################################
+
+type StrapiAuthorProxy implements Node & ArticleAuthor
+  @dontInfer
+  @childOf(types: ["STRAPI_AUTHOR"])
+  @proxyOf(type: "STRAPI_AUTHOR") {
+  name: String! @proxyField
+  slug: String! @link(from: "parent", on: "STRAPI_AUTHOR") @makeSlug
+  description: String @proxyField
+  title: String @proxyField
+  social: [SocialMedia]
+    @proxyField(from: "parent.social_array")
+    @normalizeSocial
+  skills: [String] @proxyField(from: "parent.skills_array")
+  thumbnail: ImageSharp
+    @proxyField(from: "parent.thumbnail___NODE")
+    @link(on: "STRAPI__MEDIA")
+    @proxyResolver(on: "STRAPI__MEDIA", to: "localFileImageSharp")
+}
+
+############################################
+## Media
+############################################
+
+extend type STRAPI__MEDIA implements Node {
+  localFileImageSharp: ImageSharp
+    @link(on: "ImageSharp", from: "localFile___NODE", by: "parent.id")
+  localFilePublicURL: String
+    @link(on: "File", from: "localFile___NODE")
+    @proxyResolver(on: "File", to: "publicURL")
+}

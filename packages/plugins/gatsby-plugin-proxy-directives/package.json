@@ -1,0 +1,8 @@
+{
+  "name": "@elegantstack/gatsby-plugin-proxy-directives",
+  "version": "3.1.0",
+  "main": "index.js",
+  "private": true,
+  "author": "ElegantStack Team",
+  "license": ""
+}

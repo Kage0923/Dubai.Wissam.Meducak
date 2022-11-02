@@ -1,0 +1,21 @@
+{
+	"name": "@elegantstack/gatsby-starter-flexiblog-personal",
+	"private": true,
+	"version": "3.10.0",
+	"scripts": {
+		"develop": "gatsby develop",
+		"start": "gatsby develop",
+		"build": "gatsby build",
+		"clean": "gatsby clean",
+		"serve": "gatsby serve"
+	},
+	"dependencies": {
+		"@elegantstack/gatsby-theme-flexiblog-personal": "*",
+		"gatsby": "^4.14.1",
+		"react": "^18.1.0",
+		"react-dom": "^18.1.0"
+	},
+	"devDependencies": {
+		"prettier": "^2.6.2"
+	}
+}

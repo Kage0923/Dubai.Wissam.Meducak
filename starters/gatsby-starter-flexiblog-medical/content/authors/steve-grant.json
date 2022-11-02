@@ -1,0 +1,21 @@
+{
+  "name": "Steve Grant",
+  "title": "Product Designer",
+  "description": "Sed commodo, est quis maximus fermentum, massa ipsum euismod neque, in varius risus tellus quis lacus. Sed ac bibendum odio.",
+  "thumbnail": "steve-grant.png",
+  "social": [
+    {
+      "name": "Instagram",
+      "url": "https://instagram.com/instagram"
+    },
+    {
+      "name": "Twitter",
+      "url": "https://twitter.com/twitter"
+    },
+    {
+      "name": "Website",
+      "url": "https://example.com"
+    }
+  ],
+  "skills": ["Product research", "Lab-based R&D", "Clinical Trials"]
+}

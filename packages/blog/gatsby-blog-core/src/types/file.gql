@@ -1,0 +1,70 @@
+############################################
+## Article
+############################################
+
+type MdxArticleProxy implements Node & Article
+  @dontInfer
+  @childOf(types: ["Mdx"])
+  @proxyOf(type: "Mdx") {
+  title: String! @proxyField(from: "parent.frontmatter.title")
+  slug: String! @proxyField(from: "parent.frontmatter") @makeSlug
+  date: Date @proxyField(from: "parent.frontmatter.date") @dateformat
+  featured: Boolean @proxyField(from: "parent.frontmatter.featured")
+  private: Boolean @proxyField(from: "parent.frontmatter.private")
+  protected: Boolean @proxyField(from: "parent.frontmatter.protected")
+  author: ArticleAuthor
+    @proxyField(from: "parent.frontmatter.author")
+    @link(by: "name")
+  category: ArticleCategory
+    @proxyField(from: "parent.frontmatter.category")
+    @link(by: "name")
+  tags: [ArticleTag]
+    @proxyField(from: "parent.frontmatter.tags")
+    @link(by: "name")
+  keywords: [String] @proxyField(from: "parent.frontmatter.keywords")
+  link: String @proxyField(from: "parent.frontmatter.link")
+  body: String @link(from: "parent", on: "Mdx") @proxyResolver(on: "Mdx")
+  excerpt(pruneLength: Int = 100): String
+    @link(from: "parent", on: "Mdx")
+    @proxyResolver(on: "Mdx")
+  timeToRead: Int @link(from: "parent", on: "Mdx") @proxyResolver(on: "Mdx")
+  thumbnailText: String @proxyField(from: "parent.frontmatter.thumbnailText")
+  thumbnail: ImageSharp
+    @proxyField(from: "parent.frontmatter.thumbnail")
+    @fileByRelativePath
+    @reduce(to: "id")
+    @link(by: "parent.id")
+  tableOfContents(maxDepth: Int = 6): JSON
+    @link(from: "parent", on: "Mdx")
+    @proxyResolver(on: "Mdx")
+  draft: Boolean @proxyField(from: "parent.frontmatter.draft")
+}
+
+############################################
+## Category
+############################################
+
+type CategoriesJson implements Node & ArticleCategory @dontInfer {
+  name: String!
+  slug: String! @makeSlug
+  description: String
+  color: String
+  icon: String @fileByRelativePath @proxyResolver(on: "File", to: "publicURL")
+}
+
+############################################
+## Author
+############################################
+
+type AuthorsJson implements Node & ArticleAuthor @dontInfer {
+  name: String!
+  slug: String! @makeSlug
+  description: String
+  title: String
+  social: [SocialMedia] @normalizeSocial
+  skills: [String]
+  thumbnail: ImageSharp
+    @fileByRelativePath
+    @reduce(to: "id")
+    @link(by: "parent.id")
+}

@@ -1,0 +1,21 @@
+{
+  "name": "Jane Smith",
+  "title": "Creative Designer",
+  "description": "Sed commodo, est quis maximus fermentum, massa ipsum euismod neque, in varius risus tellus quis lacus. Sed ac bibendum odio.",
+  "thumbnail": "jane-smith.png",
+  "social": [
+    {
+      "name": "Instagram",
+      "url": "https://instagram.com/instagram"
+    },
+    {
+      "name": "Twitter",
+      "url": "https://twitter.com/twitter"
+    },
+    {
+      "name": "Website",
+      "url": "https://example.com"
+    }
+  ],
+  "skills": ["CSS", "Javascript", "React"]
+}

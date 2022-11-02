@@ -1,0 +1,14 @@
+{
+  "fonts": {
+    "google": {
+      "families": [
+        "Spectral:400,700,900",
+        "Karla:400,i400,600,700&display=swap"
+      ]
+    }
+  },
+  "theme": {
+    "headerFontFamily": ["Spectral", "serif"],
+    "bodyFontFamily": ["Karla", "sans-serif"]
+  }
+}
